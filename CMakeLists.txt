@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.8.3)
 project(demo_rgbd_slimmed)
 
 set(CMAKE_BUILD_TYPE Release)
-set(BUILD_STATIC_LIBS ON)
-set(BUILD_SHARED_LIBS OFF)
+# set(BUILD_STATIC_LIBS ON)
+# set(BUILD_SHARED_LIBS OFF)
 
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED COMPONENTS
@@ -14,20 +14,19 @@ find_package(catkin REQUIRED COMPONENTS
   pcl_ros
 )
 
-find_package(OpenCV REQUIRED)
+find_package(Eigen3 REQUIRED)
 find_package(PCL REQUIRED)
+set ( OpenCV_DIR   "/home/alfredoso/Software/OpenCV/build/")
+find_package(OpenCV REQUIRED)
+
 
 ###################################
 ## catkin specific configuration ##
 ###################################
 
 catkin_package(
-  CATKIN_DEPENDS
-  roscpp
-  std_msgs
-  sensor_msgs
-  cv_bridge
-  pcl_ros
+  CATKIN_DEPENDS roscpp std_msgs sensor_msgs cv_bridge pcl_ros
+  DEPENDS EIGEN3 PCL OpenCV
 )
 
 ###########
@@ -40,14 +39,6 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
   ${PCL_INCLUDE_DIRS}
-  /usr/local/include # Location when using 'make system_install'
-  /usr/include       # More usual location (e.g. when installing using a package)
-)
-
-## Specify additional locations for library files
-link_directories(
-  /usr/local/lib # Location when using 'make system_install'
-  /usr/lib       # More usual location (e.g. when installing using a package)
 )
 
 ## Declare executables
