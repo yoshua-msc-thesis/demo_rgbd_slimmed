@@ -64,6 +64,7 @@ cv_bridge::CvImage bridge;
 
 void imageDataHandler(const sensor_msgs::Image::ConstPtr& imageData) 
 {
+  ROS_INFO("New image!");
   timeLast = timeCur;
   timeCur = imageData->header.stamp.toSec();
 
